@@ -45,7 +45,7 @@
     font-size: 14px;
 }
 
-/*SITE BODY*/
+/*SITE B*/
 
 #site-body {
     width:80%;
@@ -59,7 +59,7 @@
     height: 500px;
     background-color: #ffffff;
     float: left;
-    margin-left:50px;
+    margin-left:5px;
     box-sizing: border-box;
     padding: 65px 75px 0 75px;
 }
