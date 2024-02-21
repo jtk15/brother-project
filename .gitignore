@@ -2,3 +2,4 @@ env
 db.sqlite3
 .vscode
 access_t
+static

@@ -2,10 +2,10 @@
 {% block sitebody %}
     {% for product in products %}
         <div class="div-product div-prduct1">
-            <img src="../static/image/kaika.png" alt="frasco kaika">
-            <h2>KAIKA</h2>
-            <h1>kaika Aero Desodorante Corporal</h1>
-            <h3>Preço: R$79,99</h3>
+            <img src="/{{product.image}}" alt="frasco kaika">
+            <h2>{{product.line}}</h2>
+            <h1>{{product.title}}</h1>
+            <h3>Preço: R${{product.price}}</h3>
             <button>Adicionar</button>
         </div>
     {% endfor %}
