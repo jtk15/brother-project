@@ -12,6 +12,8 @@ class Base(models.Model):
     
 class Category(Base):
     
+    slug = models.CharField(max_length=200, blank=True)
+    
     class Meta: 
         
         verbose_name = 'Categoria'
@@ -26,9 +28,8 @@ class Product(Base):
     price = models.DecimalField('Preço', max_digits=6, decimal_places=2)
     title = models.CharField('Titulo', max_length=200, blank=True)
     line = models.CharField('Linha', max_length=200, blank=True)
-    image = models.ImageField(upload_to = 'static/image/', blank=True)
+    image = models.ImageField(upload_to = 'upload/', blank=True)
     category = models.ForeignKey(Category, related_name='categories', on_delete=models.PROTECT, verbose_name='Categoria')
-
     
     class Meta:
 
