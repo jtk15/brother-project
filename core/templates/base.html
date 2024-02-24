@@ -11,24 +11,30 @@
         <link href="https://fonts.googleapis.com/css2?family=Outfit&family=Pacifico&display=swap" rel="stylesheet">
     </head>
     <body>
-        <div id="site-container">
-            <div id="site-header">
-                <h1>Jo Perfumaria</h1>
+        <div id="site-header">
+            <h1>Jo Perfumaria</h1>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Promoções</a></li>
+                <li><a href="#">Contato</a></li>
+                <li id="btn-login"><a href="#" >Entrar/Cadastrar</a></li>
+            </ul>
+        </div>
+        <div id="site-body">
+            <div id="categories">
                 <ul>
-                    <li>Inicio</li>
-                    <li>Sobre</li>
-                    <li>Catálago</li>
-                    <li>Promoção</li>
-                    <li>Contato</li>
+                    {% for category in categories %}
+                        <li><a href={% url 'products' category.slug %}>{{category.name}}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
-            <div id="site-body">
-                {% block sitebody %}
-                {%endblock%}
-            </div>
-            <div id="site-footer">
-                
-            </div>
+            {% block sitebody %}
+
+            {%endblock%}
+        </div>
+        <div id="site-footer">
+
+        </div>
         </div>
     </body>
 </html>
