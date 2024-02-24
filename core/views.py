@@ -5,8 +5,11 @@ from core.models import Product, Category
 
 
 def index(request):
-    
-    return HttpResponse(status=501)
+    return render(request, 'home.html')
+
+
+def contact(request):
+    return render(request, 'contact.html')
 
 
 def products(request):
@@ -36,6 +39,12 @@ def products_by_category(request, slug):
         print('Categoria nao exite')
         
     return render(request, 'products_by_category.html', {'error': "Pagina categoria nao encontrada"})
+
+
+def promotions(request):
+    
+    
+    return render(request, 'promotions.html')
 
     
     
