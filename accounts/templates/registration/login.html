@@ -1,4 +1,17 @@
 {% extends 'base.html' %}
 {% block sitebody %}
-    <h1>404 NOT FOUND - Página contato em construção</h1>
+    <div id="container">
+        <h1>Entrar</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Login</label><input type="text" name="username" class="inpu-form inputOne"><br>
+            <label>Senha</label><input type="password" name="password" class="input-form inputTwo">
+            <input type="submit" value="Entrar" id="btn-form">
+        </form>
+        <div id="container-reset-register">
+            <span id="reset-password"><a href="#">Esqueci minha Senha?</a></span>
+            <span id="user-cad"><a href="#">Casdastrar</a></span>
+        </div>
+        
+    </div>
 {%endblock%}
