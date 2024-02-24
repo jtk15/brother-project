@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
 {% block sitebody %}
     {% for product in products %}
@@ -10,4 +10,5 @@
             <button>Adicionar</button>
         </div>
     {% endfor %}
+    {{error}}
 {% endblock %}
