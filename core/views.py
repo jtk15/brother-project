@@ -6,7 +6,8 @@ from core.models import Product, Category
 
 def index(request):
     
-    return render(request, 'base.html')
+    return HttpResponse(status=501)
+
 
 def products(request):
     
