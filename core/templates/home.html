@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block sitebody %}
+<div id="categories">
+    <ul>
+        {% for category in categories %}
+            <li><a href={% url 'products' category.slug %}>{{category.name}}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{%endblock%}

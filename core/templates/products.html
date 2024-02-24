@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 {% block sitebody %}
+    <div id="categories">
+        <ul>
+            {% for category in categories %}
+                <li><a href={% url 'products' category.slug %}>{{category.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
     {% for product in products %}
         <div class="div-product div-prduct1">
             <img src={% static 'upload/una.webp' %} />
