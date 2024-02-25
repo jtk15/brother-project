@@ -10,7 +10,7 @@
     </div>
     {% for product in products %}
         <div class="div-product div-prduct1">
-            <img src={% static 'upload/hidratante.webp' %} />
+            <img src={% static product.image %} />
             <h2>{{product.line}}</h2>
             <h1>{{product.title}}</h1>
             <h3>Preço: R${{product.price}}</h3>

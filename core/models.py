@@ -28,7 +28,7 @@ class Product(Base):
     price = models.DecimalField('Preço', max_digits=6, decimal_places=2)
     title = models.CharField('Titulo', max_length=200, blank=True)
     line = models.CharField('Linha', max_length=200, blank=True)
-    image = models.ImageField(upload_to = 'upload/', blank=True)
+    image = models.ImageField(upload_to = 'image_uploads/', blank=True)
     category = models.ForeignKey(Category, related_name='categories', on_delete=models.PROTECT, verbose_name='Categoria')
     
     class Meta:
