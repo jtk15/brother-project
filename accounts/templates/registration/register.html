@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block sitebody %}
+    <div id="container">
+        <h1>Tela de Cadastro</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Usuário</label><input type="text" name="username" class="inpu-form inputOne"><br>
+            <label>Senha</label><input type="password" name="password1" class="input-form inputTwo">
+            <label>Repetir</label><input type="password" name="password2" class="input-form inputTwo">
+            <input type="submit" value="Registrar" id="btn-form">
+        </form>
+    </div>
+{%endblock%}
