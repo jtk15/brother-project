@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block sitebody %}
+    <div class="car-container">
+        
+            {% if not form_valid %}
+                <div class="catainer-checkout-empty">
+                    <h1>Carrinho Vazio</h1>
+                </div>
+            {% endif %}
+        
+
+        {% if  form_valid  %}
+            <h1 style="text-align:center; font-family:arial; font-size:70px; padding:50px; color:#c5c5c5;">Carrinho</h1>
+            {% for form in formset %}   
+                <div class="container-image">
+                    <img src={% static form.instance.product.image %} alt="produto">
+                    <div class="btns-product">
+                        <a href={% url 'cartcreate' form.instance.product.pk %}><button class="btn-btns-product btn-btns-product1">Adicionar</button></a>
+                        <a href={% url 'itemremove' form.instance.product.pk %}><button class="btn-btns-product btn-btns-product2">Remover</button></a>
+                    </div>
+                </div>
+                <div class="section-product">
+                    <p>id: {{form.instance.product.pk}}</p>
+                    <p>{{form.instance.product.name}}</p>
+                    <p></p>R$ {{form.instance.price}}</p>
+                    <p></p>Quantidade {{form.instance.quantity}} </p>
+                    
+                </div>
+            {% endfor %}
+        {% endif %}
+       
+
+        {% comment %} <table>
+            <tr style="border:1px solid #000;">
+                <th style="width:3%; height:60px;">Item</th>
+                <th>Nome</th>
+                <th style="width:7%">Preço</th>
+                <th style="width:3%">Quatidade</th>
+                <th style="width:10%">Acao</th>
+            </tr>
+            {% for form in formset %}
+            <tr>
+                <td>{{form.instance.product.pk}}</td>
+                <td>{{form.instance.product.name}}</td>
+                <td>{{form.instance.price}}</td>
+                <td>{{form.instance.quantity}}</td>
+                <td>
+                    <button class="car-button plus-button">+</button>
+                    <button class="car-button less-button">-</button>
+                    <button class="car-button clean-button">Excluir</button>
+                </td>
+                {% endfor %}
+            </tr>
+        </table> {% endcomment %}
+    </div>
+{% endblock %}

@@ -41,6 +41,18 @@ def products_by_category(request, slug):
     return render(request, 'products_by_category.html', {'error': "Pagina categoria nao encontrada"})
 
 
+def product_detail(request, pk):
+     
+    product = Product.objects.get(pk=pk)
+    
+
+    context = {
+        'product_image': product.image
+    }
+    
+    return render(request, 'product_detail.html', context) 
+
+
 def promotions(request):
     
     
