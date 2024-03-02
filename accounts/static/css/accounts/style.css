@@ -1,0 +1,137 @@
+#container-login-form {
+    width:40%;
+    height:400px;
+    background-color: rgb(255, 255, 255);
+    box-sizing: border-box;
+    margin: auto;
+    border-radius: 3px;
+    margin-top:110px;
+
+    
+    /* background: pink; */
+}
+
+#container-login-form h1 {
+    font-family: "Roboto Condensed", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+    font-size: 50px;
+    text-align: center;
+    line-height: 2; 
+    color: #000;
+}
+
+#container-login-form form {
+    width: 100%;
+    height: auto;
+    margin: auto;
+}
+
+#container-login-form form label {
+    
+    font-family: arial;
+    color: rgb(0, 0, 0);
+    font-family: arial;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    margin-left: 15%;
+}
+
+.label-form-login1 {
+    font-family: arial;
+    color: rgb(0, 0, 0);
+    font-family: arial;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+}
+
+#container-login-form form input {
+    width: 50%;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    margin-left:20px;
+    margin-bottom: 10px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid #000;
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    font-size: 17px;
+}
+
+#container-login-form form .inputTwo {
+    margin-left: 14px;
+}
+
+#container-login-form form #btn-form {
+    background-color: rgb(143, 113, 137);
+    color: white;
+    display: block;
+    margin:10px 0 20px 149px;
+    height: 35px;
+    border: none;
+}
+
+#container-reset-register {
+    width:300px;
+    height: 300px; 
+    margin:auto;
+    padding: 5px;
+}
+
+#reset-password {
+    display: block;
+    color: white;
+    font-size: 15px;
+    font-family: arial;
+    margin-bottom:15px;
+}
+
+#user-cad {
+    display: block;
+    color: white;
+    font-size: 15px;
+    font-family: arial;
+}
+
+
+#user-login {
+    background-color: #916c91;
+    border-radius: 3px;    
+}
+
+#site-header ul  #user-login:hover {
+    background-color: #916c91;
+}
+
+.span-default {
+    /* color: #555251; */
+    color: #d6d0d0;
+    font-size: 13px;
+}
+
+.span1 {
+    
+}
+
+.span2 {
+    text-transform: capitalize;
+}
+
+#btn-login {
+    background-color: #916c91;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+#site-header #btn-login:hover {
+    background-color: #916c91;
+}
+
+
+
