@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{%load static %}
+{% block sitebody %}
+    <div id="container-product-detail">
+        <div id="container-small-divs">
+            <div class="container-small-image-product-detail">
+                <img class="image-detail-small" src={% static product_image %} >
+            </div>
+            <div class="container-small-image-product-detail">
+                <img class="image-detail-small" src={% static product_image %} >
+            </div>
+            <div class="container-small-image-product-detail">
+                <img class="image-detail-small" src={% static product_image %} >
+            </div>
+        </div>
+        <div class="container-big-image-product-detail">
+            <img class="image-detail" src={% static product_image %} width="300" height="300">
+        </div>
+        {% comment %} <div class="container-big-image-product-detail"> {% endcomment %}
+            <p class="teste">Kaika Perfume Masculino Oboticario MAN</p>
+            <p class="teste">R$ 120,99</p>
+        {% comment %} </div> {% endcomment %}
+        
+    </div>
+{% endblock %}

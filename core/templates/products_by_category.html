@@ -14,7 +14,8 @@
             <h2>{{product.line}}</h2>
             <h1>{{product.title}}</h1>
             <h3>Preço: R${{product.price}}</h3>
-            <button>Adicionar</button>
+            <a href={% url 'product_detail' product.pk %}><button>Detalhes</button></a>
+            <a href={% url 'cartcreate' product.pk %}><button>Adicionar</button></a>
         </div>
     {% endfor %}
     {{error}}

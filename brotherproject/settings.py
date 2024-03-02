@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-ovk4bo+=z%b5068@bbev05&z8l*+o16z9b3qmk^7p@ll!a^4fn
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'core',
+    'checkout',
 ]
 
 MIDDLEWARE = [
