@@ -46,11 +46,17 @@ class OrderManager(models.Manager):
     
     def create_order(self, user, cart_items):
         
-        order = self.create(user=user)
-        
-        for cart_item in cart_items:
+        try:
+            order = self.create(user=user)
+            for cart_item in cart_items:
+                
+                order_item = OrderItem.objects.create(order=order, product=cart_item.product, quantity=cart_item.quantity, price=cart_item.price)
             
-            order_item = OrderItem.objects.create(order=order, product=cart_item.product, quantity=cart_item.quantity, price=cart_item.price)
+            cart_item = cart_item.delete()
+        except Exception as e:
+            pass
+            
+        
             
         return order_item
     
