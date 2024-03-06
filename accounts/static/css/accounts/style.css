@@ -100,34 +100,12 @@
 }
 
 
-#user-login {
-    background-color: #916c91;
-    border-radius: 3px;    
-}
 
-#site-header ul  #user-login:hover {
-    background-color: #916c91;
-}
-
-.span-default {
-    /* color: #555251; */
-    color: #d6d0d0;
-    font-size: 13px;
-}
 
 .span1 {
     
 }
 
-.span2 {
-    text-transform: capitalize;
-}
-
-#btn-login {
-    background-color: #916c91;
-    padding: 10px;
-    border-radius: 3px;
-}
 
 #site-header #btn-login:hover {
     background-color: #916c91;

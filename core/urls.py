@@ -5,7 +5,8 @@ from core.views import (
     products,
     products_by_category, 
     promotions, contact, 
-    product_detail
+    product_detail,
+    create_order
 )
 
 
@@ -16,4 +17,5 @@ urlpatterns = [
     path('produtos/<str:slug>', products_by_category, name='products'),
     path('promocoes', promotions, name='promotions'),
     path('contatos', contact, name='contact'),
+    path('pedido/fenalizado', create_order, name='finishingorder'),
 ]

@@ -18,7 +18,7 @@
     <body>
         <div id="site-header">
             <h1>Jo Perfumaria</h1>
-            <a href={% url 'checkout' %}><span style="padding:3px; width:50px; height:50px; float:right; margin-right:7%;" class="material-symbols-outlined">shopping_bag</span></a>
+            <a href={% url 'checkout' %}><div id="container-checkout"><span style="font-size:39px;" class="material-symbols-outlined">shopping_bag</span></div></a>
             {% comment %} <img style="float:right; margin-right:7%;" src="{% static 'images/checkout.png' %}" alt="carrinho de compra" width="40" height="40"></a> {% endcomment %}
             <ul>
                 <li><a href={% url 'products' %}>Inicio</a></li>
