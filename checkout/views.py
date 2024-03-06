@@ -46,16 +46,18 @@ class CartItemView(TemplateView):
             extra=0,
             can_delete=True
         )
-       
-        session_key = self.request.session.session_key 
+         
+        if self.request.session.session_key is None:
+            self.request.session.save()
+            
+        session_key = self.request.session.session_key
         
         if session_key:
             context['formset'] = ItemCartFomSet(queryset=ItemCart.objects.filter(cart_key=session_key))
         else:
             context['formset'] = ItemCartFomSet(queryset=ItemCart.objects.none)
-       
         context['form_valid']=int(len(context['formset']))
-        
+          
         return context
     
 
