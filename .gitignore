@@ -2,6 +2,5 @@ env
 db.sqlite3
 .vscode
 access_t
-static
-upload
-core/upload
+image_uploads
+note

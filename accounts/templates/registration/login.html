@@ -1,17 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
+{% block csslink %}
+    <link rel='stylesheet' href={% static 'css/accounts/style.css' %}>
+{% endblock %}
 {% block sitebody %}
-    <div id="container">
+    <div id="container-login-form">
         <h1>Entrar</h1>
         <form method="POST">
             {% csrf_token %}
-            <label>Login</label><input type="text" name="username" class="inpu-form inputOne"><br>
-            <label>Senha</label><input type="password" name="password" class="input-form inputTwo">
+            <label class="label-form-login label-form-login1">Login</label><input type="text" name="username" class="inpu-form inputOne"><br>
+            <label class="label-form-login label-form-login2">Senha</label><input type="password" name="password" class="input-form inputTwo">
             <input type="submit" value="Entrar" id="btn-form">
         </form>
         <div id="container-reset-register">
             <span id="reset-password"><a href="#">Esqueci minha Senha?</a></span>
             <span id="user-cad"><a href={% url 'register' %}>Casdastrar</a></span>
         </div>
-        
     </div>
 {%endblock%}

@@ -10,11 +10,16 @@
     </div>
     {% for product in products %}
         <div class="div-product div-prduct1">
-            <img src={% static 'upload/hidratante.webp' %} />
+            <a href={% url 'product_detail' product.pk %}>
+            <img src={% static product.image %} />
+            </a>
             <h2>{{product.line}}</h2>
+            <a href={% url 'product_detail' product.pk %}>
             <h1>{{product.title}}</h1>
+            </a>
             <h3>Preço: R${{product.price}}</h3>
-            <button>Adicionar</button>
+            {% comment %} <a href={% url 'product_detail' product.pk %}><button>Detalhes</button></a> {% endcomment %}
+            <a href={% url 'cartcreate' product.pk %}><button>Adicionar</button></a>
         </div>
     {% endfor %}
     {{error}}
