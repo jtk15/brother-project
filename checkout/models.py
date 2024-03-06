@@ -33,7 +33,7 @@ class ItemMananger(models.Manager):
 class ItemCart(models.Model):
     
     cart_key = models.CharField('Chave do Carrinho', max_length=40, db_index=True)
-    product = models.ForeignKey('core.Product', related_name='itemcarts', on_delete=models.PROTECT)
+    product = models.ForeignKey('core.Product', related_name='itemcarts', on_delete=models.CASCADE)
     quantity  =  models.PositiveIntegerField('Quantidade', default=1)
     price = models.DecimalField('Preço', decimal_places=2, max_digits=6)
     

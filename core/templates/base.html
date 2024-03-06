@@ -22,7 +22,7 @@
             {% comment %} <img style="float:right; margin-right:7%;" src="{% static 'images/checkout.png' %}" alt="carrinho de compra" width="40" height="40"></a> {% endcomment %}
             <ul>
                 <li><a href={% url 'products' %}>Inicio</a></li>
-                <li><a href={% url 'promotions' %}>Promoções</a></li>
+                {% comment %} <li><a href={% url 'promotions' %}>Promoções</a></li> {% endcomment %}
                 <li><a href={% url 'contact' %}>Contato</a></li>
                 {% if user.is_authenticated %}
                     <li id="user-login"><span class="span-default span1">Bem Vindo </span><span class="span-default span2">{{user}}</span></li>

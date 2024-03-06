@@ -52,7 +52,9 @@ class OrderManager(models.Manager):
                 
                 order_item = OrderItem.objects.create(order=order, product=cart_item.product, quantity=cart_item.quantity, price=cart_item.price)
             
-            cart_item = cart_item.delete()
+            for cart_item in cart_items:
+                cart_item.delete()
+            
         except Exception as e:
             pass
             
