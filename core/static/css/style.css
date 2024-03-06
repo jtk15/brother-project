@@ -138,6 +138,14 @@
     color: #555151;
 }
 
+.precoproduct {
+    font-size: 13px;
+    font-family: arial;
+    padding: 5px;                                                                                                                  
+    color: #e90707;
+    text-decoration: line-through;
+}
+
 .div-product button {
     width: 150px;
     height: 35px;
@@ -294,10 +302,6 @@ body {
     color: #fff;
     border-radius: 3px;
     margin-top: 3px;
-}
-
-.btns-product .btn-btns-product2 {
-    
 }
 
 
