@@ -1,12 +1,13 @@
 {% load  static %}
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
     <head>
         <meta charset="utf-8">
         <title>Jo Perfumaria</title>
         <link rel='stylesheet' href={% static 'css/style.css' %}>
         {% block csslink %}
         {% endblock %}
+        
         {% comment %} <link rel='stylesheet' href={% static 'css/accounts/style.css' %}> {% endcomment %}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,6 +35,13 @@
             </ul>
         </div>
         <div id="site-body">
+            {% block menssages %}
+                {%for message in messages %}
+                    <div class="message-{{message.tags}}">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endblock %}
             {% block sitebody %}
 
             {%endblock%}

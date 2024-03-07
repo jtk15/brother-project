@@ -1,12 +1,61 @@
 {% extends 'base.html' %}
+{% load static%}
+{% block csslink %}
+    <link rel='stylesheet' href={% static 'css/accounts/style.css' %}>
+{% endblock %}
 {% block sitebody %}
-    <div id="container">
-        <h1>Tela de Cadastro</h1>
+    <div id="container-form-register">
+        <h1>Cadastro</h1>
         <form method="POST">
             {% csrf_token %}
-            <label>Usuário</label><input type="text" name="username" class="inpu-form inputOne"><br>
-            <label>Senha</label><input type="password" name="password1" class="input-form inputTwo">
-            <label>Repetir</label><input type="password" name="password2" class="input-form inputTwo">
+            <label>Nome<span class="field-required">*</span></label>
+            <span style="color:#ff0000;">{{user_empty_data.name}}</span>
+            <input value="{{user_data.name}}" type="text" name="name" class="inpu-form inputOne">
+
+            <label>Sobre Nome<span class="field-required">*</span></label>
+            <span style="color:#ff0000;">{{user_empty_data.surname}}</span>
+            <input value="{{user_data.surname}}" type="text" name="surname" class="inpu-form inputOne"><br>
+
+
+            <label>Usuario<span class="field-required">*</span></label>
+            <span style="color:#ff0000;">{{user_empty_data.username}}</span>
+            <input value="{{user_data.username}}" type="text" name="username" class="inpu-form inputOne"><br>
+
+
+            <label>E-mail<span class="field-required">*</span></label>
+             <span style="color:#ff0000;">{{user_empty_data.email}}</span>
+             <input value="{{user_data.email}}" type="email" name="email" class="inpu-form inputOne"><br>
+
+
+            <label>Telefone</label>
+             <span style="color:#ff0000;">{{user_empty_data.phone}}</span>
+             <input value="{{user_data.phone}}" type="text" name="phone" class="inpu-form inputOne"><br>
+
+
+            <label>Senha<span class="field-required">*</span></label>
+             <span style="color:#ff0000;">{{user_empty_data.password1}}</span>
+             <input value="{{user_data.password1}}" type="password" name="password1" class="input-form inputTwo"><br>
+
+
+            <label>Repetir<span class="field-required">*</span></label>
+             <span style="color:#ff0000;">{{user_empty_data.password2}}</span>
+             <input value="{{user_data.password2}}" type="password" name="password2" class="input-form inputTwo"><br>
+
+
+            {% comment %} <label>Cep<span class="field-required">*</span></label>
+             <span style="color:#ff0000;">{{user_empty_data.code}}</span>
+             <input value="{{user_data.code}}" type="text" name="code" class="inpu-form inputOne"><br> {% endcomment %}
+
+
+            {% comment %} <label>Endereço<span class="field-required">*</span></label>
+             <span style="color:#ff0000;">{{user_empty_data.address}}</span>
+             <input value="{{user_data.address}}" type="text" name="address" class="inpu-form inputOne"><br> {% endcomment %}
+
+
+            {% comment %} <label>Complemento</label>
+            <input value="{{user_data.complement}}" type="text" name="complement" class="inpu-form inputOne"><br> {% endcomment %}
+
+
             <input type="submit" value="Registrar" id="btn-form">
         </form>
     </div>
