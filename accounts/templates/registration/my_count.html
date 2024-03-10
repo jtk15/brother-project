@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block sitebody %}
+<p>Nome:{{user.name}}</p> 
+<p>email:{{email}}</p>
+<p>Contato:{{user.cell_phone}}</p> 
+
+<br>
+<a href={% url 'orders' %}>Pedidos</a>
+{% endblock %}

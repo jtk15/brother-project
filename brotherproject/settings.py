@@ -137,3 +137,5 @@ LOGOUT_REDIRECT_URL = 'login'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'core/static/')
+
+AUTH_USER_MODEL = "accounts.CustomUser"
