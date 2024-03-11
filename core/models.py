@@ -5,6 +5,8 @@ from django.conf import settings
 class Base(models.Model):
     
     name = models.CharField('Nome', max_length=200)
+    created = models.DateTimeField('Criado em', auto_now_add=True)
+    modified = models.DateTimeField('Modificado em', auto_now=True)
     
     class Meta:
         
@@ -19,6 +21,7 @@ class Category(Base):
         
         verbose_name = 'Categoria'
         verbose_name_plural = 'Categorias'
+        
         
     def __str__(self):
         return f'Categoria {self.name}'
@@ -57,9 +60,7 @@ class OrderManager(models.Manager):
             
         except Exception as e:
             pass
-            
-        
-            
+    
         return order_item
     
     
@@ -74,7 +75,7 @@ class Order(models.Model):
     
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="orders", on_delete=models.CASCADE)
     status = models.IntegerField('Status do Pedido',  choices=ORDER_STATUS, default=0, blank=False)
-    created = models.DateTimeField('Criado em', auto_now_add=True)
+    created = models.DateTimeField('Realizado Em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em', auto_now=True)
     
     objects = OrderManager()
@@ -89,17 +90,18 @@ class Order(models.Model):
         
 
 class OrderItem(models.Model):
-    
     order = models.ForeignKey(Order, verbose_name='Pedido do item', related_name='itens', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, verbose_name='Produto', related_name='orderitens', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField('Quantidade', default=1)
     price = models.DecimalField('Preço', decimal_places=2, max_digits=6)
-    
+    created = models.DateTimeField('Criado em', auto_now_add=True)
+    modified = models.DateTimeField('Modificado em', auto_now=True)
     
     class Meta:
         
         verbose_name = 'Item do Pedido'
         verbose_name = 'Itens dos Pedidos'
+    
     
     def __str__(self):
         return '{} {}' .format(self.order, self.product)

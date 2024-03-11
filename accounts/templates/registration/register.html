@@ -12,9 +12,9 @@
             <span style="color:#ff0000;">{{user_empty_data.name}}</span>
             <input value="{{user_data.name}}" type="text" name="name" class="inpu-form inputOne">
 
-            <label>Sobre Nome<span class="field-required">*</span></label>
+            {% comment %} <label>Sobre Nome<span class="field-required">*</span></label>
             <span style="color:#ff0000;">{{user_empty_data.surname}}</span>
-            <input value="{{user_data.surname}}" type="text" name="surname" class="inpu-form inputOne"><br>
+            <input value="{{user_data.surname}}" type="text" name="surname" class="inpu-form inputOne"><br> {% endcomment %}
 
 
             <label>Usuario<span class="field-required">*</span></label>
@@ -29,7 +29,7 @@
 
             <label>Telefone</label>
              <span style="color:#ff0000;">{{user_empty_data.phone}}</span>
-             <input value="{{user_data.phone}}" type="text" name="phone" class="inpu-form inputOne"><br>
+             <input value="{{user_data.phone}}" type="text" name="cell_phone" class="inpu-form inputOne"><br>
 
 
             <label>Senha<span class="field-required">*</span></label>

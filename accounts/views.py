@@ -1,39 +1,72 @@
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
-from .admin import CustomUserCreationForm
+from django.views.generic import TemplateView
+from accounts.models import CustomUser
 
-# Create your views here.
-def register(request):  
-    user_empty_data = {}
-    user_data = {}
-    field_kyes = ['name', 'surname', 'username', 'email', 'phone', 'password1', 'password2'] #'code', 'address', 'complement']
-    
-    
-    if request.method == 'POST':
-        
-        datas = request.POST
-        
-        for key in datas.keys():
-            user_data.update({
-                key: datas[key]
-            })
-        
-        for key in field_kyes:
-            if datas[key] == '':
-                user_empty_data[key]=f'Campo Obrigatorio' 
 
-        form = CustomUserCreationForm(request.POST)
+from accounts.forms import CustomUserCreationForm
+
+class MyCount(TemplateView):
     
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Cadastro Realizado com Sucesso')
+    template_name = 'registration/my_count.html'
+    
+    def get_context_data(self, *args, **kwargs):
+        
+        user = self.request.user
+        
+        print('####', user.username)
+    
+        context = super(my_count, self).get_context_data(*args,**kwargs)
+        context['email']=user.email
+        context['username']=user.username
+        
+        return context
+
+
+class Register(TemplateView):
+    
+    template_name = 'registration/register.html'
+    
+    def get_context_data(self, *args, **kwargs):
+        
+        context = super(Register, self).get_context_data(**kwargs)
+    
+        return context   
+    
+    def post(self, request, *args, **kwargs):
+        
+        user_empty_data = {}
+        user_data = {}
+        field_kyes = ['name', 'username', 'email', 'cell_phone', 'password1', 'password2']
+
+        if request.method == 'POST':
             
-        else:
-            if request.method == 'POST':
-                messages.error(request, 'Formulário Inválido')
-            form = CustomUserCreationForm()  
+            datas = request.POST
+        
+            for key in datas.keys():
+                user_data.update({
+                    key: datas[key]
+                })
+            
+            for key in field_kyes:
+                if datas[key] == '':
+                    user_empty_data[key]=f'Campo Obrigatorio'
+                    
+            context = self.get_context_data(**kwargs) 
+            context.update({'user_empty_data':user_empty_data, 'user_data':user_data})
+           
+            form = CustomUserCreationForm(request.POST)
+        
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Cadastro Realizado com Sucesso')
+                return redirect('/accounts/registro')
+               
+            else:
+                if request.method == 'POST':
+                    messages.error(request, 'Formulário Inválido')
+                   
+                    return self.render_to_response(context)
        
-          
-          
-    return render(request, 'registration/register.html', context={'user_empty_data':user_empty_data, 'user_data':user_data})  
+my_count = MyCount

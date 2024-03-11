@@ -2,19 +2,12 @@ from django.contrib import admin
 from core.models import Product, Category, Order, OrderItem
 
 class AdminProduct(admin.ModelAdmin):
-    list_display = ['id', 'name', 'price', 'category']
-    
-    
-    
-
-class AdminCategory(admin.ModelAdmin):
-    list_display = ['id', 'name']
+    list_display = ['id', 'name', 'price', 'category', 'created', 'modified']    
     
     
 class AdminCategory(admin.ModelAdmin):
-    list_display = ['id', 'name']
+    list_display = ['id', 'name', 'created', 'modified']
     
-
 
 class OrderItemInline(admin.TabularInline):
     # list_display = ['id', 'order', 'product', 'quantity', 'price']

@@ -1,21 +1,20 @@
 from django.contrib import admin
-from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.admin import UserAdmin
+
+from .models import CustomUser 
+from accounts.forms import CustomUserCreationForm
 
 
-class CustomUserCreationForm(UserCreationForm):
+class CustomUserAdmin(UserAdmin):
     
-    name = forms.CharField(label='Nome', max_length=100)
-    surname = forms.CharField(label='Sobre Nome', max_length=100)
-    email = forms.EmailField(max_length=100)
-    phone = forms.CharField(label='Telefone', max_length=100)
-    code = forms.CharField(label='Cep', max_length=11, required=False)
-    address = forms.CharField(label='Endereço', max_length=200, required=False)
-    complement = forms.CharField(label='Complemento', max_length=200, required=False)
+    list_display = ['username', 'name', 'email', 'cell_phone']
     
-    
-    class Meta:
-        
-        model = User
-        fields = ('name', 'surname', 'username', 'email', 'phone', 'password1', 'password2', 'code', 'address', 'complement')
+    add_form = CustomUserCreationForm
+    readonly_fields = ['created', 'modified']
+    fieldsets = (
+        ('Informações', {'fields': ('name', 'username', 'email', 'cell_phone')}),
+        (None, {'fields': ('created', 'modified')}),
+        ('Permissões', {'fields': ('is_staff', 'is_active', 'groups', 'user_permissions')}),
+    )
+
+admin.site.register(CustomUser, CustomUserAdmin)

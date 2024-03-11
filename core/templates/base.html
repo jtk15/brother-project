@@ -26,7 +26,8 @@
                 {% comment %} <li><a href={% url 'promotions' %}>Promoções</a></li> {% endcomment %}
                 <li><a href={% url 'contact' %}>Contato</a></li>
                 {% if user.is_authenticated %}
-                    <li id="user-login"><span class="span-default span1">Bem Vindo </span><span class="span-default span2">{{user}}</span></li>
+                    <li id="user-login"><span class="span-default span1">Bem Vindo</span><span class="span-default span2"> {{user}}</span></li>
+                    <li id="btn-login"><a href={% url 'my-count' %}>Minha Conta</a></li>
                     <li id="btn-login"><a href={% url 'logout' %}>Sair</a></li>
                 {% else %}
                     <li id="btn-login"><a href={% url 'login' %}>Entrar/Cadastrar</a></li>
