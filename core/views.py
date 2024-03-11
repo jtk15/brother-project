@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from checkout.models import ItemCart
-from core.models import Order
+from core.models import Order, Product
 
 from core.models import Order, Product, Category
 
@@ -32,19 +32,25 @@ class OrderViews(TemplateView):
     template_name = 'orders.html'
     
     def get_context_data(self, *args, **kwargs):
-        
+        user_orders = Order.objects.filter(user=self.request.user)
+       
         context = super(OrderViews, self).get_context_data(**kwargs)
-        context['orders'] = Order.objects.filter(user=self.request.user)
+        
+        for order in user_orders:
+            for dic_items in order.itens.values():
+                context['items'] = dic_items
+                
+        context['orders'] = user_orders
+        context['products'] = Product.objects.all()
+        
         return context
 
 
 class ContactView(TemplateView):
     
     template_name = 'contact.html'
-    
-    
-    
-    
+
+
 def index(request):
     return render(request, 'home.html')
 
