@@ -96,9 +96,86 @@
 #site-body #categories li a {
     text-decoration: none;
     color: #4c494c;
+    /* border: 1px solid #000; */
+}
+
+/***
+   Slide Site
+*/
+
+#container-slide {
+    width: 800px;
+    height: auto;
+    margin: auto;
+    margin-top: 50px;
+    /* border: 1px solid #ff0000; */
+    overflow: hidden;
+    /* box-shadow:2px 3px 15px 3px #b28fb1; */
+    border-radius: 5px;
+}
+
+.radio-select {
+    display: none;
+}
+
+#div-slides {
+    width: 2400px;
+    height: 400px;
+    display: flex;
+    /* border: 1px solid #000; */
+}
+
+.div-images {
+    width: 800px;
+    height: 400px;
+    transition: .9s;
+}
+
+.images {
+    width: 800px;
+    height: 400px;
+    display: block;
+    margin:auto;
+    border-radius: 3px;
+}
+
+#slide-navigation {
+    width:200px;
+    height: 30px;
+    /* border: 1px solid #000; */
+    margin: auto;
+    /* margin-top: 20px; */
 }
 
 
+#slide-navigation label {
+    width:18px;
+    height: 18px;
+    display: block;
+    float: left;
+    border-radius: 40px;
+    /* background-color: #747474; */
+    margin:5px 0 0 15px;
+    border: 2px solid #747474;
+    cursor: pointer;
+}
+
+#slide-navigation label:hover {
+   background-color: #cccccc;
+   transition: .6s;
+}
+
+#radio1:checked ~ .slide-first-image {
+    margin-left:0;
+}
+
+#radio2:checked ~ .slide-first-image {
+    margin-left: -800px;
+}
+
+#radio3:checked ~ .slide-first-image {
+    margin-left: -1600px;
+}
 /***
     BODY Products
 */

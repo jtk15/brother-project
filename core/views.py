@@ -52,7 +52,12 @@ class ContactView(TemplateView):
 
 
 def index(request):
-    return render(request, 'home.html')
+    
+    context  = {
+        'products': Product.objects.all()
+    }
+    
+    return render(request, 'home.html', context)
 
 
 def products(request):
