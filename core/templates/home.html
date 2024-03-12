@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block sitebody %}
 <div id="categories">
     <ul>
@@ -7,4 +8,47 @@
         {% endfor %}
     </ul>
 </div>
+<div id="container-slide">
+    <div id="div-slides">
+        <input class="radio-select" type="radio" name="radio" id="radio1" checked>
+        <input class="radio-select" type="radio" name="radio" id="radio2">
+        <input class="radio-select" type="radio" name="radio" id="radio3">
+
+        <div class="div-images slide-first-image">
+            <img class="images" src={% static 'images/slide-image/image7.jpg' %} alt="">
+        </div>
+        <div class="div-images">
+            <img class="images" src={% static 'images/slide-image/image8.jpg' %}  alt="">
+        </div>
+        <div class="div-images">
+            <img class="images" src={% static 'images/slide-image/image5.jpg' %}  alt="">
+        </div>
+    </div>
+    <div id="slide-navigation">
+        <label for="radio1"></label>
+        <label for="radio2"></label>
+        <label for="radio3"></label>   
+    </div>
+</div>
+
+{% for product in products %}
+<div class="div-product div-prduct1">
+    <a href={% url 'product_detail' product.pk %}>
+        <img src={% static product.image %} />
+    </a>
+    <h2>{{product.line}}</h2>
+    <a style="color:#555151; text-decoration:none;" href={% url 'product_detail' product.pk %}>
+    <h1>{{product.title}}</h1>
+    <a>
+    <h3>De
+    <span style=" font-size: 13px;
+    font-family: arial;
+    padding: 5px;                                                                                                                  
+    color: #555151;
+    text-decoration: line-through;">R$ 56,70</span></h3>
+    <h3>Preço: R${{product.price}}</h3>
+    <a href={% url 'cartcreate' product.pk %}><button>Adicionar</button></a>
+</div>
+{% endfor %}
+ 
 {%endblock%}
