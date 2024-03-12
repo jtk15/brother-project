@@ -36,6 +36,24 @@
             </ul>
         </div>
         <div id="site-body">
+            {% block  categories%}
+                <div id="categories">
+                    <ul>
+                        {% for category in categories %}
+                            <li><a href={% url 'products' category.slug %}>{{category.name}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endblock  %}
+            {% block  search_filter%}
+                <div id="div-search-filter">
+                    <form>
+                        <input id="btn-search" type="submit" name="" value="Pesquisar">
+                        <input type="text" name="filter">
+                    </form>
+                </div>
+            {% endblock  %}
+            
             {% block menssages %}
                 {%for message in messages %}
                     <div class="message-{{message.tags}}">

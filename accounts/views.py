@@ -2,10 +2,9 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.views.generic import TemplateView
-from accounts.models import CustomUser
-
 
 from accounts.forms import CustomUserCreationForm
+
 
 class MyCount(TemplateView):
     
@@ -14,10 +13,8 @@ class MyCount(TemplateView):
     def get_context_data(self, *args, **kwargs):
         
         user = self.request.user
-        
-        print('####', user.username)
     
-        context = super(my_count, self).get_context_data(*args,**kwargs)
+        context = super(MyCount, self).get_context_data(*args,**kwargs)
         context['email']=user.email
         context['username']=user.username
         
@@ -68,5 +65,3 @@ class Register(TemplateView):
                     messages.error(request, 'Formulário Inválido')
                    
                     return self.render_to_response(context)
-       
-my_count = MyCount

@@ -62,8 +62,15 @@ def index(request):
 
 def products(request):
     
-    products = Product.objects.all()
+    products = None
     
+    filter_request = request.GET.get('filter')
+   
+    if filter_request == None or len(filter_request) == 0:
+        products = Product.objects.filter()   
+    else:
+        products = Product.objects.filter(name__contains=filter_request)
+
     context = {
         'products': products
     }
@@ -73,9 +80,17 @@ def products(request):
 
 def products_by_category(request, slug):
     
+    products = None
+
     try:
+        
         category = Category.objects.get(slug=slug) 
-        products = category.categories.all()
+        
+        filter_request = request.GET.get('filter')
+        if filter_request == None or len(filter_request) == 0:
+            products = category.categories.filter()   
+        else:
+            products = category.categories.filter(name__contains=filter_request)
         
         context = {
             'products': products
