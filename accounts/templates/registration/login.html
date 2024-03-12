@@ -4,6 +4,9 @@
     <link rel='stylesheet' href={% static 'css/accounts/style.css' %}>
 {% endblock %}
 {% block sitebody %}
+    {% block  categories%}{% endblock%}
+    {% block  search_filter%}
+    {%endblock%}
     <div id="container-login-form">
         <h1>Entrar</h1>
         <form method="POST">

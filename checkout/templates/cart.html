@@ -2,6 +2,9 @@
 {% load static %}
 
 {% block sitebody %}
+    {% block  categories%}{% endblock%}
+    {% block  search_filter%}
+    {%endblock%}
     <div class="car-container">
         
             {% if not form_valid %}
