@@ -223,6 +223,13 @@
 /***
     BODY Products
 */
+
+#container-products {
+    width: 83%;
+    height: 600px;
+    /* border: 1px solid #000; */
+    margin: auto;
+}
 .div-product {
     width:300px;
     height: 500px;
@@ -528,3 +535,5 @@ div .message-success {
     text-align: center;
     border-radius: 3px;
 }
+
+
