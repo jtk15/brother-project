@@ -13,15 +13,18 @@
                     <h1>Carrinho Vazio</h1>
                 </div>
             {% endif %}
-        
+            <h1 style="text-align:center;  font-family: Roboto Condensed; font-size:70px; padding:50px; color:#c5c5c5;">Carrinho</h1>
+            {% comment %} <img width="200" style="display:inline;" height="200px" src={% static 'images/carrinho.png' %}> {% endcomment %}
 
         {% if  form_valid  %}
-            <h1 style="text-align:center; font-family:arial; font-size:70px; padding:50px; color:#c5c5c5;">Carrinho</h1>
-            {% for form in formset %}   
+            
+            
+            {% for form in formset %}
+                <div style="width:250px; height:400px; float:left;">
                 <div class="container-image">
                     <img src={% static form.instance.product.image %} alt="produto">
                     <div class="btns-product">
-                        <a href={% url 'cartcreate' form.instance.product.pk %}><button class="btn-btns-product btn-btns-product1">Adicionar</button></a>
+                        <a href={% url 'cartcreate' form.instance.product.pk %}><button class="btn-btns-product btn-btns-product1">Adicionar +1</button></a>
                         <a href={% url 'itemremove' form.instance.product.pk %}><button class="btn-btns-product btn-btns-product2">Remover</button></a>
                     </div>
                 </div>
@@ -29,37 +32,15 @@
                     <p>id: {{form.instance.product.pk}}</p>
                     <p>{{form.instance.product.name}}</p>
                     <p></p>R$ {{form.instance.price}}</p>
-                    <p></p>Quantidade {{form.instance.quantity}} </p>
+                    <p></p>Quant: {{form.instance.quantity}} </p>
                     
                 </div>
+                </div>
             {% endfor %}
-            <div>
-            <a href="/site/pedido/fenalizado"><button style="width:100px; height:40px; background:red; color:#fff;">Concluir Pedido</button></a>
+            <div style="clear:both; positinon:relative; margin-left:1%;">
+                <a href="/site/pedido/fenalizado"><button style="border:none; border-radius:5px; font-size:17px; padding:10px; background:#916c91; height:40px;  color:#fff; clear:both; font-family:arial;">Concluir Pedido</button></a>
             </div>
         {% endif %}
-       
-
-        {% comment %} <table>
-            <tr style="border:1px solid #000;">
-                <th style="width:3%; height:60px;">Item</th>
-                <th>Nome</th>
-                <th style="width:7%">Preço</th>
-                <th style="width:3%">Quatidade</th>
-                <th style="width:10%">Acao</th>
-            </tr>
-            {% for form in formset %}
-            <tr>
-                <td>{{form.instance.product.pk}}</td>
-                <td>{{form.instance.product.name}}</td>
-                <td>{{form.instance.price}}</td>
-                <td>{{form.instance.quantity}}</td>
-                <td>
-                    <button class="car-button plus-button">+</button>
-                    <button class="car-button less-button">-</button>
-                    <button class="car-button clean-button">Excluir</button>
-                </td>
-                {% endfor %}
-            </tr>
-        </table> {% endcomment %}
     </div>
+   
 {% endblock %}
