@@ -171,3 +171,83 @@ REGISTER USER CSS CODE
     background-color:#916c91;
     color:#ffffff;
 }
+
+/**
+    My count 
+*/
+
+#site-body #div-container-user-information {
+    width:80%;
+    height: auto;
+    margin:auto;
+    padding-top: 80px;
+    /* border: 1px solid #000; */
+}
+
+#site-body #div-container-user-information h1{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom:30px; 
+}
+
+#site-body #div-container-user-information p{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    padding: 10px;
+    border-bottom: 1px solid rgb(212, 212, 212);
+}
+
+/* #site-body #div-container-user-information hr {
+    margin: 30px;
+    border: 2px solid gray;
+}  */
+
+#div-container-order-information {
+    width:80%;
+    height: auto;
+    margin:auto;
+    margin-top: 60px;
+    /* border: 1px solid #000; */
+}
+
+#div-container-order-information h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    /* font-size: 1px; */
+    padding: 10px;
+    margin-bottom: 50px;
+}
+
+
+
+#container-itens-product {
+    width: 90%;
+    height: 300px;
+    margin: auto;
+    /* border:  1px solid #000; */
+}
+
+#container-image-itens-product {
+    width: 150px;
+    height: 200px;
+    float: left;
+}
+
+#container-item-information {
+    width: 600px;
+    height: 300px;
+    float: left;
+  
+}
+
+.text-information-product {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    margin: 10px;
+}
+
+#contianer-information.product p{
+    margin-bottom: 5px;
+}
+
+
+

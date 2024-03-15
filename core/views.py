@@ -3,7 +3,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from checkout.models import ItemCart
-from core.models import Order, Product
+from core.models import Order, OrderItem, Product
 
 from core.models import Order, Product, Category
 

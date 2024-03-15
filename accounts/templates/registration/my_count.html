@@ -1,13 +1,47 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block sitebody %}
-{% block  categories%}{% endblock%}
-{% block  search_filter%}
-{%endblock%}
-<p>Nome:{{user.name}}</p> 
-<p>email:{{email}}</p>
-<p>Contato:{{user.cell_phone}}</p> 
+    {% block  categories%}{% endblock%}
+    {% block  search_filter%}
+    {%endblock%}
+    {% block icon-contact %}{% endblock  %}
 
-<br>
-<a href={% url 'orders' %}>Pedidos</a>
+<div id="div-container-user-information">
+    <h1>Cadastro:</h1>
+    <p>Nome: {{user.name}}</p> 
+    <p>E-mail: {{email}}</p>
+    <p>Telefone: {{user.cell_phone}}</p>
+    
+</div>
+
+<div id='div-container-order-information'>
+    <h1>Pedidos</h1>
+    {% comment %} <div id="container-itens-product">  {% endcomment %}
+    {%for order in orders%}  
+        {% for item in order.itens.values %}                  
+            {% for product in products%}
+                {%if product.pk ==  item.product_id %}
+                        <div style="width:400px; height:300px; float:left;">                      
+                            <img style="width:150px; height:200px; float:left;" width="150" height="200" src={% static product.image %}>
+                            <div id="contianer-information.product" style="width:30%; height:150px;  float:left; padding:10px;" >
+                                <div style="width:200px; height:auto; margin-top:5px; padding:10px;">
+                                    <p><span class="text-information-product">Status do Pedido: {{order.status}}</span></p>
+                                    <p><span class="text-information-product">Data da Reserva: 14/03/2024 </span></p>
+                                </div>
+                                <div style="width:100%; height:auto; margin-top:10px; padding:10px;">
+                                    <p><span class="text-information-product">Produto: {{product.name}}</span></p>
+                                    <p><span class="text-information-product">Quantidade: {{item.quantity}}</span></p>
+                                    <p><span class="text-information-product">Preco: {{item.price}}<p><span>
+                                </div>
+                            </div>
+                        </div>
+                   
+                        {%endif%}
+                {% endfor %}
+            {% endfor %}
+   
+    {% endfor %}
+{% comment %} </div> {% endcomment %}
+</div>
 {% endblock %}
