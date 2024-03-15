@@ -28,10 +28,11 @@ class Category(Base):
     
     
 class Product(Base):
- 
-    price = models.DecimalField('Preço', max_digits=6, decimal_places=2)
+    
+    price = models.DecimalField('Preço De', decimal_places=2, max_digits=6, null=True)
+    promotion_price = models.DecimalField('Preço', max_digits=6, decimal_places=2, null=True)
     title = models.CharField('Titulo', max_length=200, blank=True)
-    line = models.CharField('Linha', max_length=200, blank=True)
+    # line = models.CharField('Linha', max_length=200, blank=True)
     image = models.ImageField(upload_to = 'image_uploads/', blank=True)
     category = models.ForeignKey(Category, related_name='categories', on_delete=models.PROTECT, verbose_name='Categoria')
     
