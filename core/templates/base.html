@@ -8,7 +8,7 @@
         {% block csslink %}
         {% endblock %}
         
-        {% comment %} <link rel='stylesheet' href={% static 'css/accounts/style.css' %}> {% endcomment %}
+        <link rel='stylesheet' href={% static 'css/accounts/style.css' %}>
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Outfit&family=Pacifico&display=swap" rel="stylesheet"> 
@@ -24,7 +24,7 @@
             <ul>
                 <li><a href={% url 'index' %}>Inicio</a></li>
                 <li><a href={% url 'products' %}>Produtos</a></li>
-                <li><a href={% url 'contact' %}>Contato</a></li>
+                {% comment %} <li><a href={% url 'contact' %}>Contato</a></li> {% endcomment %}
                 {% if user.is_authenticated %}
                     <li id="user-login"><span class="span-default span1">Bem Vindo</span><span class="span-default span2"> {{user}}</span></li>
                     <li id="btn-login"><a href={% url 'my-count' %}>Minha Conta</a></li>
@@ -61,9 +61,15 @@
                     </div>
                 {% endfor %}
             {% endblock %}
+            {% block icon-contact %}
+            <div style="position:fixed; width:80px; height:80px; left:90%; top:80%;" id="icon-contact">
+                <a href="https://wa.me/63984815142"><img style="width:80px; height:80px;" src={% static 'images/whatsapp.png' %}></a>
+            </div>
+            {% endblock  %}
             {% block sitebody %}
 
             {%endblock%}
+
         </div>
         <div id="site-footer">
 

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block sitebody %}
+{% block icon-contact %}{% endblock  %}
     {% comment %} <div id="categories">
         <ul>
             {% for category in categories %}
@@ -8,19 +9,26 @@
             {% endfor %}
         </ul>
     </div> {% endcomment %}
-    {% for product in products %}
-        <div class="div-product div-prduct1">
-            <a href={% url 'product_detail' product.pk %}>
-            <img src={% static product.image %} />
-            </a>
-            <h2>{{product.line}}</h2>
-            <a href={% url 'product_detail' product.pk %}>
-            <h1>{{product.title}}</h1>
-            </a>
-            <h3>Preço: R${{product.price}}</h3>
-            {% comment %} <a href={% url 'product_detail' product.pk %}><button>Detalhes</button></a> {% endcomment %}
-            <a href={% url 'cartcreate' product.pk %}><button>Adicionar</button></a>
-        </div>
-    {% endfor %}
+    <div id="container-products"> 
+        {% for product in products %}
+            <div class="div-product div-prduct1">
+                <a href={% url 'product_detail' product.pk %}>
+                    <img src={% static product.image %} />
+                </a>
+                <h2>{{product.line}}</h2>
+                <a style="color:#555151; text-decoration:none;" href={% url 'product_detail' product.pk %}>
+                <h1>{{product.title}}</h1>
+                <a>
+                <h3>De
+                <span style=" font-size: 13px;
+                font-family: arial;
+                padding: 5px;                                                                                                                  
+                color: #555151;
+                text-decoration: line-through;">R$ 56,70</span></h3>
+                <h3>Preço: R${{product.price}}</h3>
+                <a href={% url 'cartcreate' product.pk %}><button>Adicionar</button></a>
+            </div>
+        {% endfor %}
+    </div>
     {{error}}
 {% endblock %}

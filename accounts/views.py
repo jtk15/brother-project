@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.views.generic import TemplateView
 
 from accounts.forms import CustomUserCreationForm
+from core.models import Order, OrderItem, Product
 
 
 class MyCount(TemplateView):
@@ -11,10 +12,19 @@ class MyCount(TemplateView):
     template_name = 'registration/my_count.html'
     
     def get_context_data(self, *args, **kwargs):
-        
+        user_orders = Order.objects.filter(user=self.request.user)
         user = self.request.user
-    
+       
         context = super(MyCount, self).get_context_data(*args,**kwargs)
+        
+        for order in user_orders:
+            for dic_items in order.itens.values():
+                context['items'] = dic_items
+        
+        # context of orders        
+        context['orders'] = user_orders
+        context['products'] = Product.objects.all()
+        # context of user    
         context['email']=user.email
         context['username']=user.username
         
