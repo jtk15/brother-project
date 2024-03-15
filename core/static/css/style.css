@@ -336,47 +336,11 @@ body {
 }
 
 .car-container {
-    width: 80%;
-    height: 300px;
+    width: 70%;
+    height: auto;
     /* background:  #a47da4; */
     margin:auto;
 }
-
-.car-container table, th,tr,td {
-    /* border: 1px solid black; */
-    border-collapse: collapse;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    /* border-color: #555151; */
-
-}
-
-.car-container table th {
-    border:1px solid #555151;
-}
-
-.car-container table .car-button {
-    width:100%;
-    height: 25px;
-    display: block;
-    border-radius: 3px;
-    border: none;
-    font-size: 20px;
-    background-color: #916c91;
-    margin: 2px;
-    color: #fff;
-}
-
-/* .car-container table .less-button {
-    background: yellow;
-}
-.car-container table .plus-button {
-    background: green;
-}
-.car-container table .clean-button {
-    background: red;
-} */
 
 /*RODA PE DO SITE*/
 #site-footer {
@@ -403,18 +367,18 @@ body {
 }
 
 .section-product {
-    width: 200px;
+    width: 80px;
     height: 200px;
-    padding: 20px;
+    padding: 10px;
     float: left;
-    font-family: "Roboto Slab", serif;
-    font-optical-sizing: auto;
+    font-family: "arial";
     font-weight: 600;
     font-style: normal;
 }
 
 .section-product p {
     padding: 1.5px;
+    margin: 3px;
 }
 
 .btns-product {
