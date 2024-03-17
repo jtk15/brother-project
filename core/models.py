@@ -1,6 +1,7 @@
 from django.db import models
 from brotherproject.settings import BASE_DIR
 from django.conf import settings
+from django.db import transaction
 
 class Base(models.Model):
     
@@ -33,6 +34,7 @@ class Product(Base):
     price = models.DecimalField('Preço', max_digits=6, decimal_places=2, null=True)
     title = models.CharField('Titulo', max_length=200, blank=True)
     # line = models.CharField('Linha', max_length=200, blank=True)
+    stock_product = models.IntegerField('Estoque', default=1)
     image = models.ImageField(upload_to = 'image_uploads/', blank=True)
     category = models.ForeignKey(Category, related_name='categories', on_delete=models.PROTECT, verbose_name='Categoria')
     
@@ -54,7 +56,13 @@ class OrderManager(models.Manager):
             order = self.create(user=user, order_price=order_price)
             
             for cart_item in cart_items:
+                
                 order_item = OrderItem.objects.create(order=order, product=cart_item.product, quantity=cart_item.quantity, price=cart_item.price)
+
+                product = Product.objects.get(pk=cart_item.product.pk)
+                with transaction.atomic():
+                    product.stock_product -=  cart_item.quantity
+                    product.save()
             
             for cart_item in cart_items:
                 cart_item.delete()

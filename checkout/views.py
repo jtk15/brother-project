@@ -27,7 +27,7 @@ class RemoveCartItem(RedirectView):
             
             product = get_object_or_404(Product, pk=kwargs['id'])
             
-            cart_item = ItemCart.objects.delete_item(self.request.session.session_key, product)
+            cart_item = CartItem.objects.delete_item(self.request.session.session_key, product)
             
             return '/site/checkout/carrinho'
                         

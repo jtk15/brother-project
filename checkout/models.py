@@ -8,10 +8,17 @@ class ItemMananger(models.Manager):
         if self.filter(cart_key=cart_key, product=product).exists():
             created = False
             # with transaction.atomic():
+            
+            # if cart_item.stock_product > 0:
             cart_item = self.get(cart_key=cart_key, product=product)
             cart_item.quantity = cart_item.quantity  + 1
-            cart_item.price = cart_item.price + product.price
-            cart_item.save()
+            print('st :{} qt: {}' .format(cart_item.product.stock_product, cart_item.quantity))
+            if cart_item.quantity <= cart_item.product.stock_product:
+                
+                cart_item.price = cart_item.price + product.price
+                cart_item.save()
+            else:
+                print('Produto com estoque baixo')
         else: 
             created = True
             with transaction.atomic():

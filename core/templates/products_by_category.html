@@ -11,6 +11,7 @@
     </div> {% endcomment %}
     <div id="container-products"> 
         {% for product in products %}
+        {% if product.stock_product > 2 %}
             <div class="div-product div-prduct1">
                 <a href={% url 'product_detail' product.pk %}>
                     <img src={% static product.image %} />
@@ -28,6 +29,7 @@
                 <h3>Preço: R${{product.price}}</h3>
                 <a href={% url 'cartcreate' product.pk %}><button>Adicionar</button></a>
             </div>
+            {% endif%}
         {% endfor %}
     </div>
     {{error}}

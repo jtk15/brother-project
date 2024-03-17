@@ -2,7 +2,7 @@ from django.contrib import admin
 from core.models import Product, Category, Order, OrderItem
 
 class AdminProduct(admin.ModelAdmin):
-    list_display = ['id', 'name', 'price', 'category', 'created', 'modified']    
+    list_display = ['id', 'name', 'price', 'stock_product', 'category', 'created', 'modified']    
     
     
 class AdminCategory(admin.ModelAdmin):

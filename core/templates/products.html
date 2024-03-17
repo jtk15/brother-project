@@ -4,23 +4,25 @@
 {% block sitebody %}
     <div id="container-products"> 
         {% for product in products %}
-            <div class="div-product div-prduct1">
-                <a href={% url 'product_detail' product.pk %}>
-                    <img src={% static product.image %} />
-                </a>
-                {% comment %} <h2>{{product.line}}</h2> {% endcomment %}
-                <a style="color:#555151; text-decoration:none;" href={% url 'product_detail' product.pk %}>
-                <h1>{{product.title}}</h1>
-                <a>
-                <h3>De
-                <span style=" font-size: 13px;
-                font-family: arial;
-                padding: 5px;                                                                                                                  
-                color: #555151;
-                text-decoration: line-through;">{{product.price_before}}</span></h3>
-                <h3>Preço: R${{product.price}}</h3>
-                <a href={% url 'cartcreate' product.pk %}><button>Adicionar</button></a>
-            </div>
+            {% if product.stock_product > 0 %}
+                <div class="div-product div-prduct1">
+                    <a href={% url 'product_detail' product.pk %}>
+                        <img src={% static product.image %} />
+                    </a>
+                    {% comment %} <h2>{{product.line}}</h2> {% endcomment %}
+                    <a style="color:#555151; text-decoration:none;" href={% url 'product_detail' product.pk %}>
+                    <h1>{{product.title}}</h1>
+                    <a>
+                    <h3>De
+                    <span style=" font-size: 13px;
+                    font-family: arial;
+                    padding: 5px;                                                                                                                  
+                    color: #555151;
+                    text-decoration: line-through;">{{product.price_before}}</span></h3>
+                    <h3>Preço: R${{product.price}}</h3>
+                    <a href={% url 'cartcreate' product.pk %}><button>Adicionar</button></a>
+                </div>
+            {% endif %}
         {% endfor %}
     </div>
 {% endblock %}
