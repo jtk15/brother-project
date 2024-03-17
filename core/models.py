@@ -76,7 +76,7 @@ class Order(models.Model):
     
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="orders", on_delete=models.CASCADE)
     status = models.IntegerField('Status do Pedido',  choices=ORDER_STATUS, default=0, blank=False)
-    order_price = models.DecimalField('Preço do Pediido', max_digits=6, decimal_places=2, null=True, default=0)
+    order_price = models.DecimalField('Valor do Pedido', max_digits=6, decimal_places=2, null=True, default=0)
     created = models.DateTimeField('Realizado Em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em', auto_now=True)
     
@@ -96,7 +96,7 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, verbose_name='Produto', related_name='orderitens', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField('Quantidade', default=1)
     price = models.DecimalField('Preço', decimal_places=2, max_digits=6)
-    order_price = models.DecimalField('Preço do Pediido', max_digits=6, decimal_places=2, null=True)
+    # order_price = models.DecimalField('Preço do Pediido', max_digits=6, decimal_places=2, null=True)
     created = models.DateTimeField('Criado em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em', auto_now=True)
     
