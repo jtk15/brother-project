@@ -17,8 +17,8 @@
                 font-family: arial;
                 padding: 5px;                                                                                                                  
                 color: #555151;
-                text-decoration: line-through;">{{product.price}}</span></h3>
-                <h3>Preço: R${{product.promotion_price}}</h3>
+                text-decoration: line-through;">{{product.price_before}}</span></h3>
+                <h3>Preço: R${{product.price}}</h3>
                 <a href={% url 'cartcreate' product.pk %}><button>Adicionar</button></a>
             </div>
         {% endfor %}

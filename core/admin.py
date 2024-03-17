@@ -18,7 +18,7 @@ class OrderItemInline(admin.TabularInline):
 
 
 class AdminOrder(admin.ModelAdmin):
-    list_display = ['id', 'user', 'status', 'created', 'modified']
+    list_display = ['id', 'user', 'status', 'order_price', 'created']
     search_fields = ['status', 'id']
     
     inlines = [

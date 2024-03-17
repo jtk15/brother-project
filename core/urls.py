@@ -4,9 +4,9 @@ from core.views import (
     index,
     products,
     products_by_category, 
-    promotions,
+    # promotions,
     product_detail,
-    create_order,
+    CreateOrder,
     OrderViews,
     ContactView
 )
@@ -20,6 +20,6 @@ urlpatterns = [
     path('produtos/pesquisa/<str:filter', products, name='searchfilter'),
     # path('promocoes', promotions, name='promotions'),
     path('contatos', ContactView.as_view(), name='contact'),
-    path('pedido/fenalizado', create_order, name='finishingorder'),
+    path('pedido/fenalizado', CreateOrder.as_view(), name='finishingorder'),
     path('pedidos/', OrderViews.as_view(), name='orders')
 ]

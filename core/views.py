@@ -1,15 +1,15 @@
-from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
-from checkout.models import ItemCart
-from core.models import Order, OrderItem, Product
+from django.db import transaction
 
+from checkout.models import CartItem
+from core.models import Order, Product
 from core.models import Order, Product, Category
 
 ##  based-view  class
 
-class CreateOrderView(LoginRequiredMixin, TemplateView):
+class CreateOrder(LoginRequiredMixin, TemplateView):
     
     template_name = 'finishing_order.html'
     
@@ -17,14 +17,19 @@ class CreateOrderView(LoginRequiredMixin, TemplateView):
             
         session_key = request.session.session_key
         
-        if session_key and ItemCart.objects.filter(cart_key=session_key).exists():
+        if session_key and CartItem.objects.filter(cart_key=session_key).exists():
+            cart_items = CartItem.objects.filter(cart_key=session_key)
             
-            cart_items = ItemCart.objects.filter(cart_key=session_key)
-            order = Order.objects.create_order(user=request.user, cart_items=cart_items)
+            cart_price = 0
+            for item in  cart_items:
+                cart_price = item.price + cart_price
+        
+            with transaction.atomic():
+                order = Order.objects.create_order(user=request.user, cart_items=cart_items, order_price=cart_price)
         else:
             return redirect('/site/inicio')
         
-        return super(CreateOrderView, self).get(request, *args, **kwargs)
+        return super(CreateOrder, self).get(request, *args, **kwargs)
     
 
 class OrderViews(TemplateView):
@@ -116,10 +121,8 @@ def product_detail(request, pk):
     return render(request, 'product_detail.html', context) 
 
 
-def promotions(request):
+# def promotions(request):
     
     
-    return render(request, 'promotions.html')
+#     return render(request, 'promotions.html')
 
-    
-create_order = CreateOrderView.as_view()
