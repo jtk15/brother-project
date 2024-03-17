@@ -1,4 +1,5 @@
 from django.db import models
+from django.db import transaction
 
 class ItemMananger(models.Manager):
     
@@ -6,13 +7,16 @@ class ItemMananger(models.Manager):
        
         if self.filter(cart_key=cart_key, product=product).exists():
             created = False
+            # with transaction.atomic():
             cart_item = self.get(cart_key=cart_key, product=product)
             cart_item.quantity = cart_item.quantity  + 1
+            cart_item.price = cart_item.price + product.price
             cart_item.save()
         else: 
             created = True
-            cart_item = ItemCart(cart_key=cart_key, product=product, price=product.price)
-            cart_item.save() 
+            with transaction.atomic():
+                cart_item = CartItem(cart_key=cart_key, product=product, price=product.price)
+                cart_item.save() 
             
         return cart_item, created
 
@@ -25,12 +29,13 @@ class ItemMananger(models.Manager):
                     cart_item.delete()
                 else:
                     cart_item.quantity -= 1
+                    cart_item.price -= product.price 
                     cart_item.save()
             
             return cart_item
 
 
-class ItemCart(models.Model):
+class CartItem(models.Model):
     
     cart_key = models.CharField('Chave do Carrinho', max_length=40, db_index=True)
     product = models.ForeignKey('core.Product', related_name='itemcarts', on_delete=models.CASCADE)
@@ -40,7 +45,6 @@ class ItemCart(models.Model):
     modified = models.DateTimeField('Modificado Em', auto_now=True)
     
     objects = ItemMananger()
-    
     
     class Meta:
         

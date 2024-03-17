@@ -2,12 +2,10 @@
 {% load static %}
 
 {% block sitebody %}
-    {% block  categories%}{% endblock%}
-    {% block  search_filter%}
-    {%endblock%}
+    {% block  categories%}{% endblock %}
+    {% block  search_filter %}{% endblock %}
     {% block icon-contact %}{% endblock  %}
     <div class="car-container">
-        
             {% if not form_valid %}
                 <div class="catainer-checkout-empty">
                     <h1>Carrinho Vazio</h1>
@@ -15,12 +13,11 @@
             {% endif %}
             <h1 style="text-align:center;  font-family: Roboto Condensed; font-size:70px; padding:50px; color:#c5c5c5;">Carrinho</h1>
             {% comment %} <img width="200" style="display:inline;" height="200px" src={% static 'images/carrinho.png' %}> {% endcomment %}
-
         {% if  form_valid  %}
             
             
             {% for form in formset %}
-                <div style="width:250px; height:400px; float:left;">
+                <div style="width:280px; height:300px; float:left;">
                 <div class="container-image">
                     <img src={% static form.instance.product.image %} alt="produto">
                     <div class="btns-product">
@@ -31,13 +28,16 @@
                 <div class="section-product">
                     <p>id: {{form.instance.product.pk}}</p>
                     <p>{{form.instance.product.name}}</p>
+                    <p></p>R$ {{product.price}}</p>
                     <p></p>R$ {{form.instance.price}}</p>
                     <p></p>Quant: {{form.instance.quantity}} </p>
                     
                 </div>
                 </div>
             {% endfor %}
+           
             <div style="clear:both; positinon:relative; margin-left:1%;">
+                <h1 style="font-family:arial; font-size:18px; padding:10px;">Valor: R$ {{cart_price}} </h1>
                 <a href="/site/pedido/fenalizado"><button style="border:none; border-radius:5px; font-size:17px; padding:10px; background:#916c91; height:40px;  color:#fff; clear:both; font-family:arial;">Concluir Pedido</button></a>
             </div>
         {% endif %}

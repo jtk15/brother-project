@@ -3,8 +3,8 @@ from django.shortcuts import render, get_object_or_404
 from django.views.generic import RedirectView, TemplateView
 from django.forms import modelformset_factory
 
-from .models import ItemCart 
-from  core.models import Product
+from .models import CartItem
+from  core.models import  Product
 
 
 class CreateCartItemView(RedirectView):
@@ -16,7 +16,7 @@ class CreateCartItemView(RedirectView):
                 
         product = get_object_or_404(Product, pk=kwargs['id'])
         
-        cart_item = ItemCart.objects.add_item(self.request.session.session_key, product)
+        CartItem.objects.add_item(self.request.session.session_key, product)
         
         return '/site/checkout/carrinho'
     
@@ -41,7 +41,7 @@ class CartItemView(TemplateView):
         context = super(CartItemView, self).get_context_data(**kwargs)
     
         ItemCartFomSet = modelformset_factory(
-            ItemCart, 
+            CartItem, 
             fields=['quantity'],
             extra=0,
             can_delete=True
@@ -52,10 +52,19 @@ class CartItemView(TemplateView):
             
         session_key = self.request.session.session_key
         
+        cart_items = CartItem.objects.filter(cart_key=session_key)
+        
+        cart_price = 0
+        for item in  cart_items:
+            cart_price = item.price + cart_price
+        context['cart_price'] = cart_price
+        
+        
+        
         if session_key:
-            context['formset'] = ItemCartFomSet(queryset=ItemCart.objects.filter(cart_key=session_key))
+            context['formset'] = ItemCartFomSet(queryset=cart_items)
         else:
-            context['formset'] = ItemCartFomSet(queryset=ItemCart.objects.none)
+            context['formset'] = ItemCartFomSet(queryset=CartItem.objects.none)
         context['form_valid']=int(len(context['formset']))
           
         return context
@@ -66,7 +75,6 @@ def  carrinho(request):
     return render(request, 'cart.html') 
 
 
-crate_cart_item = CreateCartItemView.as_view()
 remove_cart_item = RemoveCartItem.as_view()
 item_cart_view  =  CartItemView.as_view()
 

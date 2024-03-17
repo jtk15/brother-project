@@ -15,12 +15,10 @@ class OrderItemInline(admin.TabularInline):
     model = OrderItem
     extra = 0  # Não mostrar campos vazios
     # readonly_fields = ['product', 'price', 'quantity',]  # Definir o campo title como apenas leitura
-    
-    
- 
- 
+
+
 class AdminOrder(admin.ModelAdmin):
-    list_display = ['id', 'user', 'status', 'created', 'modified']
+    list_display = ['id', 'user', 'status', 'order_price', 'created']
     search_fields = ['status', 'id']
     
     inlines = [

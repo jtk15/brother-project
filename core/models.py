@@ -28,10 +28,11 @@ class Category(Base):
     
     
 class Product(Base):
- 
-    price = models.DecimalField('Preço', max_digits=6, decimal_places=2)
+    
+    price_before = models.DecimalField('Preço De', decimal_places=2, max_digits=6, null=True)
+    price = models.DecimalField('Preço', max_digits=6, decimal_places=2, null=True)
     title = models.CharField('Titulo', max_length=200, blank=True)
-    line = models.CharField('Linha', max_length=200, blank=True)
+    # line = models.CharField('Linha', max_length=200, blank=True)
     image = models.ImageField(upload_to = 'image_uploads/', blank=True)
     category = models.ForeignKey(Category, related_name='categories', on_delete=models.PROTECT, verbose_name='Categoria')
     
@@ -47,12 +48,12 @@ class Product(Base):
 #Vai receber informações gerais sobre o pedido
 class OrderManager(models.Manager):
     
-    def create_order(self, user, cart_items):
+    def create_order(self, user, cart_items, order_price):
         
         try:
-            order = self.create(user=user)
+            order = self.create(user=user, order_price=order_price)
+            
             for cart_item in cart_items:
-                
                 order_item = OrderItem.objects.create(order=order, product=cart_item.product, quantity=cart_item.quantity, price=cart_item.price)
             
             for cart_item in cart_items:
@@ -75,6 +76,7 @@ class Order(models.Model):
     
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="orders", on_delete=models.CASCADE)
     status = models.IntegerField('Status do Pedido',  choices=ORDER_STATUS, default=0, blank=False)
+    order_price = models.DecimalField('Preço do Pediido', max_digits=6, decimal_places=2, null=True, default=0)
     created = models.DateTimeField('Realizado Em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em', auto_now=True)
     
@@ -94,6 +96,7 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, verbose_name='Produto', related_name='orderitens', on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField('Quantidade', default=1)
     price = models.DecimalField('Preço', decimal_places=2, max_digits=6)
+    order_price = models.DecimalField('Preço do Pediido', max_digits=6, decimal_places=2, null=True)
     created = models.DateTimeField('Criado em', auto_now_add=True)
     modified = models.DateTimeField('Modificado em', auto_now=True)
     
