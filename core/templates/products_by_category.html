@@ -11,7 +11,7 @@
     </div> {% endcomment %}
     <div id="container-products"> 
         {% for product in products %}
-        {% if product.stock_product > 2 %}
+        {% if product.stock_product > 0 %}
             <div class="div-product div-prduct1">
                 <a href={% url 'product_detail' product.pk %}>
                     <img src={% static product.image %} />

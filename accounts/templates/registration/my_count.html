@@ -24,6 +24,7 @@
         {% for item in order.itens.values %}                
             {% for product in products%}
                 {%if product.pk ==  item.product_id %}
+                    {% if product.stock_product > 0 %}
                         <div style="width:400px; height:300px; float:left;">                      
                             <img style="width:150px; height:200px; float:left;" width="150" height="200" src={% static product.image %}>
                             <div id="contianer-information.product" style="width:30%; height:150px;  float:left; padding:10px;" >
@@ -38,7 +39,7 @@
                                 </div>
                             </div>
                         </div>
-                   
+                    {%endif%}
                         {%endif%}
                 {% endfor %}
             {% endfor %}
