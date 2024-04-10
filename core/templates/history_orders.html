@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block sitebody %}
+<div id='div-container-order-information'>
+    <h1>Historico de Pedido</h1>
+    {%for order in orders %}      
+        <div style="width:100%; height:340px; float:clear;">
+        <p style="font-family:arial; font-size:1.8rem; padding:10px; clear:both;">Pedido: {{order.created}}</p>
+        <p style="font-family:arial; font-size:1.8rem; padding:10px;">Status: {{order.get_status_display}}</p>            
+        <h2 style="font-family:arial; font-size:18px;  "></h2>
+        {% for item in order.itens.values %}                
+            {% for product in products%}
+                {%if product.pk ==  item.product_id %}                    
+                    <div style="width:290px; height:300px; float:left;margin:3.5rem 0 3rem 0; box-sizing:border-box;">                      
+                        <img style="width:150px; height:250px; float:left;" width="150" height="200" src={% static product.image %}>
+                        <div id="contianer-information.product" style="width:30%; height:150px;  float:left; padding:10px;" >                        
+                            <div id="contianer-information-product" style="width:200px; height:auto; margin-top:3.5rem; padding:10px; font-family:arial; font-size:1.5rem;">
+                                <p> {{product.name}}</p>
+                                <p> R$ {{item.price}}</p>
+                                <p> Quant: {{item.quantity}}</p>                                
+                            </div>
+                        </div>
+                    </div>                
+                        {%endif%}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div> 
+{% endblock %}

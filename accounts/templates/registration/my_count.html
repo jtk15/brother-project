@@ -1,34 +1,43 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% comment %} {% block 'container_information_title_product' %}{% endblock  %} {% endcomment %}
+{% block search-filter_mobile %}{% endblock %}
 {% block sitebody %}
     {% block  categories%}{% endblock%}
     {% block  search_filter%}
     {%endblock%}
     {% block icon-contact %}{% endblock  %}
-
+  
 <div id="div-container-user-information">
     <h1>Cadastro:</h1>
     <p>Nome: {{user.name}}</p> 
     <p>E-mail: {{email}}</p>
-    <p>Telefone: {{user.cell_phone}}</p>
+    <p>Telefone: {{user.cell_phone}}</p> 
+
+    <div style="padding:10px;">
+        <a href={% url 'orders' %}><h1>Pedidos</h1></a>
+        <a href={% url 'history-orders' %}><h1>Histórico de Pedidos</h1></a>
     
+    </div>
 </div>
 
-<div id='div-container-order-information'>
+
+
+{% comment %} <div id='div-container-order-information'>
     <h1>Pedidos:</h1>
-    {% comment %} <div id="container-itens-product">  {% endcomment %}
+
     {%for order in orders%} 
         <div style="width:100%; height:340px; float:clear;">
         <h2 style="font-family:arial; font-size:18px;  border-bottom:1px solid gray; ">Pedido #343</h2>
         {% for item in order.itens.values %}                
             {% for product in products%}
                 {%if product.pk ==  item.product_id %}
+                    {% if product.stock_product > 0 %}
                         <div style="width:400px; height:300px; float:left;">                      
                             <img style="width:150px; height:200px; float:left;" width="150" height="200" src={% static product.image %}>
                             <div id="contianer-information.product" style="width:30%; height:150px;  float:left; padding:10px;" >
                                 <div style="width:200px; height:auto; margin-top:5px; padding:10px;">
-                                    <p><span class="text-information-product">Status do Pedido: {{order.status}}</span></p>
+                                    <p><span class="text-information-product">Status: {{order.get_status_display}}</span></p>
                                     <p><span class="text-information-product">Data da Reserva: 14/03/2024 </span></p>
                                 </div>
                                 <div style="width:100%; height:auto; margin-top:10px; padding:10px;">
@@ -38,12 +47,12 @@
                                 </div>
                             </div>
                         </div>
-                   
+                    {%endif%}
                         {%endif%}
                 {% endfor %}
             {% endfor %}
         </div>
     {% endfor %}
-{% comment %} </div> {% endcomment %}
-</div>
+
+</div> {% endcomment %}
 {% endblock %}

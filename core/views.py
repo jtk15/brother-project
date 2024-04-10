@@ -37,15 +37,32 @@ class OrderViews(TemplateView):
     template_name = 'orders.html'
     
     def get_context_data(self, *args, **kwargs):
-        user_orders = Order.objects.filter(user=self.request.user)
+        user_orders = Order.objects.filter(user=self.request.user, status=0)
        
         context = super(OrderViews, self).get_context_data(**kwargs)
         
         for order in user_orders:
             for dic_items in order.itens.values():
                 context['items'] = dic_items
-                
+                    
+                  
         context['orders'] = user_orders
+        context['products'] = Product.objects.all()
+        
+        return context
+    
+
+class HistoryOrderViews(TemplateView):
+    
+    template_name = 'history_orders.html'
+    
+    def get_context_data(self, *args, **kwargs):
+        
+        context = super(HistoryOrderViews, self).get_context_data(**kwargs)
+        
+        order_users = Order.objects.filter(user=self.request.user, status=3)
+         
+        context['orders'] = order_users
         context['products'] = Product.objects.all()
         
         return context
@@ -68,6 +85,7 @@ def index(request):
 def products(request):
     
     products = None
+    list_product = []
     
     filter_request = request.GET.get('filter')
    
@@ -76,10 +94,26 @@ def products(request):
     else:
         products = Product.objects.filter(name__contains=filter_request)
 
+    for product in products:
+        off = 100-((product.price*100)/product.price_before)
+        
+        list_product.append({
+            product.pk: int(100-((product.price*100)/product.price_before))
+        })
+        
     context = {
         'products': products
     }
     
+    for dic in list_product:
+        
+        for key, value in dic.items():
+            print(key, value)
+        
+        
+    
+    context.update({'product_off': list_product})
+
     return render(request, 'products.html', context)
 
 

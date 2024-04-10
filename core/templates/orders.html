@@ -1,7 +1,62 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block sitebody %}
-{% block  categories%}{% endblock%}
+
+<div id='div-container-order-information'>
+    {% if not orders %}
+        <h1>Sem Pedido Finalizado</h1>
+    {%else%}
+        <h1>Pedidos em Andamento</h1>
+    {% endif%}
+    {%for order in orders%} 
+        <div style="width:100%; height:340px; float:clear;">
+        <p style="font-family:arial; font-size:1.8rem; padding:10px; clear:both;">Pedido: {{order.created}}</p>
+        <p style="font-family:arial; font-size:1.8rem; padding:10px;">Status: {{order.get_status_display}}</p>
+            
+        <h2 style="font-family:arial; font-size:18px;  "></h2>
+        
+
+        {% for item in order.itens.values %}                
+            {% for product in products%}
+                {%if product.pk ==  item.product_id %}
+                    
+                    <div style="width:290px; height:300px; float:left;margin:3.5rem 0 3rem 0; box-sizing:border-box;">                      
+                        <img style="width:150px; height:250px; float:left;" width="150" height="200" src={% static product.image %}>
+                        <div id="contianer-information.product" style="width:30%; height:150px;  float:left; padding:10px;" >
+                            {% comment %} <div style="width:200px; height:auto; margin-top:5px; padding:10px;">
+                                <p><span class="text-information-product">Status: {{order.get_status_display}}</span></p>
+                                <p><span class="text-information-product">Data da Reserva: 14/03/2024 </span></p>
+                            </div> {% endcomment %}
+                            <div id="contianer-information-product" style="width:200px; height:auto; margin-top:3.5rem; padding:10px; font-family:arial; font-size:1.5rem;">
+                                <p> {{product.name}}</p>
+                                <p> R$ {{item.price}}</p>
+                                <p> Quant: {{item.quantity}}</p>                                
+                            </div>
+                        </div>
+                    </div>
+                
+                        {%endif%}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+</div> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} {% block  categories%}{% endblock%}
 {% block search_filter %}{% endblock  %}
     {%for order in orders%}
         <div style="border:1px solid #000; padding:10px; margin:5px;">
@@ -20,5 +75,5 @@
                 {% endfor %}
             <div>
         </div>
-    {% endfor %}
+    {% endfor %} {% endcomment %}
 {% endblock %}

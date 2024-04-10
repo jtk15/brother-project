@@ -1,45 +1,69 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block js %}
+    <script>
+
+        function testModal() {
+
+            modal = document.getElementById('div-modal')
+            modal.classList.add('open-modal')
+        }
+    </script>
+{% endblock %}
+{%block money%}
+<h2 id="total-buy"style="">R$ {{cart_price}} </h2>
+{%endblock%}
+{% block search-filter_mobile %}{% endblock %}
 {% block sitebody %}
     {% block  categories%}{% endblock %}
     {% block  search_filter %}{% endblock %}
     {% block icon-contact %}{% endblock  %}
-    <div class="car-container">
+   
+    <div class="car-container">        
             {% if not form_valid %}
                 <div class="catainer-checkout-empty">
                     <h1>Carrinho Vazio</h1>
                 </div>
             {% endif %}
-            <h1 style="text-align:center;  font-family: Roboto Condensed; font-size:70px; padding:50px; color:#c5c5c5;">Carrinho</h1>
+            {% comment %} <h1 style=" visibility: hidden; text-align:center;  font-family: Roboto Condensed; font-size:70px; padding:50px; color:#c5c5c5;" >Carrinho</h1> {% endcomment %}
             {% comment %} <img width="200" style="display:inline;" height="200px" src={% static 'images/carrinho.png' %}> {% endcomment %}
-        {% if  form_valid  %}
-            
-            
+        {% if  form_valid  %}           
             {% for form in formset %}
-                <div style="width:280px; height:300px; float:left;">
-                <div class="container-image">
-                    <img src={% static form.instance.product.image %} alt="produto">
+                <div id="container-image-section-product">                   
+                    <img src={% static form.instance.product.image %} alt="produto">  
+                                                                            
+                    <div class="section-product">
+                        {% comment %} <p>id: {{form.instance.product.pk}}</p> {% endcomment %}
+                        <p style="2.3rem">{{form.instance.product.name}}</p>
+                        {% comment %} <p></p>R$ {{product.price}}</p> {% endcomment %}
+                        <p>R$ {{form.instance.price}}</p>
+                        <p>Quant: {{form.instance.quantity}} </p> 
+                        
+                        <div class="btns-product-mobile">
+                            <a href={% url 'cartcreate' form.instance.product.pk %}><button class="btn-btns-product btn-btns-product1">Adicionar +1</button></a>
+                            <a href={% url 'itemremove' form.instance.product.pk %}><button class="btn-btns-product btn-btns-product2">Remover</button></a>
+                        </div>
+
+                        
+                    </div>
+        
                     <div class="btns-product">
                         <a href={% url 'cartcreate' form.instance.product.pk %}><button class="btn-btns-product btn-btns-product1">Adicionar +1</button></a>
                         <a href={% url 'itemremove' form.instance.product.pk %}><button class="btn-btns-product btn-btns-product2">Remover</button></a>
                     </div>
                 </div>
-                <div class="section-product">
-                    <p>id: {{form.instance.product.pk}}</p>
-                    <p>{{form.instance.product.name}}</p>
-                    <p></p>R$ {{product.price}}</p>
-                    <p></p>R$ {{form.instance.price}}</p>
-                    <p></p>Quant: {{form.instance.quantity}} </p>
-                    
-                </div>
-                </div>
             {% endfor %}
-           
-            <div style="clear:both; positinon:relative; margin-left:1%;">
-                <h1 style="font-family:arial; font-size:18px; padding:10px;">Valor: R$ {{cart_price}} </h1>
-                <a href="/site/pedido/fenalizado"><button style="border:none; border-radius:5px; font-size:17px; padding:10px; background:#916c91; height:40px;  color:#fff; clear:both; font-family:arial;">Concluir Pedido</button></a>
+            <div style="width:100%; height:60px; clear:both;  position:relative;">
+                <button onClick="testModal()" style="margin-right:4%; margin-top:-20px; border:none; border-radius:5px; font-size:17px; padding:10px;  background:#916c91; height:40px;  color:#fff; 
+                 font-family:arial; float:right;">Concluir Pedido</button>
+            </div>                   
+            <div id="div-modal" class="div-modal">
+                <p>Concluir Pedido?</p> 
+                <a href="/site/pedido/fenalizado"> <button>Sim</button></a>
+                <a href="/site/checkout/carrinho"><button>Não</button></a>
             </div>
+          
         {% endif %}
     </div>
    
