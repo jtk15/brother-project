@@ -10,26 +10,42 @@
         </ul>
     </div> {% endcomment %}
     <div id="container-products"> 
-        {% for product in products %}
-        {% if product.stock_product > 0 %}
+        {% for product in products %}       
             <div class="div-product div-prduct1">
-                <a href={% url 'product_detail' product.pk %}>
-                    <img src={% static product.image %} />
-                </a>
+                {% comment %} <div id="circle-discount"> {% endcomment %}
+                    {% for dic  in product_off %}                          
+                    {% for key, value  in dic.items %}
+                    {% if  key  == product.pk %}<h3>{{value}}% OFF </h3> {% endif %}
+                    {% endfor %}
+                    {% endfor %}
+                {% comment %} </div> {% endcomment %}
+                <div style="width:90%; height:auto; border:;" id="container-img-product">
+                    <a href={% url 'product_detail' product.pk %}>
+                        <img src={% static product.image %} width="40" height="40"/>
+                    </a>
+                </div>
                 {% comment %} <h2>{{product.line}}</h2> {% endcomment %}
-                <a style="color:#555151; text-decoration:none;" href={% url 'product_detail' product.pk %}>
-                <h1>{{product.title}}</h1>
-                <a>
-                <h3>De
-                <span style=" font-size: 13px;
-                font-family: arial;
-                padding: 5px;                                                                                                                  
-                color: #555151;
-                text-decoration: line-through;">R$ {{product.price_before}}</span></h3>
-                <h3>Preço: R${{product.price}}</h3>
-                <a href={% url 'cartcreate' product.pk %}><button>Adicionar</button></a>
+                <div id="container_information_title_product">
+                    <a style="color:#555151; text-decoration:none;" href={% url 'product_detail' product.pk %}>
+                    <h1>{{product.title}}</h1>
+                    </a>
+                </div>
+                <div id="container-information-price">
+                    <h3>De
+                    <span style="
+                    font-family: arial;
+                    padding: 5px;                                                                                                                  
+                    color: #555151;
+                    text-decoration: line-through;">{{product.price_before}}</span></h3>
+                    <h3>Por R$ {{product.price}}</h3>
+                    </div>
+                    {% if product.stock_product%}          
+                    <a style="text-decoration:none;" href="{% url 'cartcreate' product.pk %}?uri=produtos"><h3 class="" style="padding:1rem; text-align:center; margin-top:5px ;background:#a47da4; color:white; border-radius:5px;">Adicionar</h3></a>
+                    {% else %}
+                        <h3 style="padding:1rem; text-align:center; margin-top:5px ;background:red; color:white;">Esgotado</h3>
+                    {% endif %}
             </div>
-            {% endif%}
+           
         {% endfor %}
     </div>
     {{error}}

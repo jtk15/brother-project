@@ -2,12 +2,17 @@
 {% load static %}
 {% block csslink %}
     <link rel='stylesheet' href={% static 'css/accounts/style.css' %}>
+    <link rel='stylesheet' href={% static 'css/accounts/mobile.css' %}>
 {% endblock %}
+{% comment %} {% block 'container_information_title_product' %}{% endblock  %} {% endcomment %}
+{% block search-filter_mobile %}{% endblock %}
+
 {% block sitebody %}
     {% block  categories%}{% endblock%}
     {% block  search_filter%}
     {% block icon-contact %}{% endblock  %}
     {%endblock%}
+    
     <div id="container-login-form">
         <h1>Entrar</h1>
         <form method="POST">
@@ -15,10 +20,11 @@
             <label class="label-form-login label-form-login1">Login</label><input type="text" name="username" class="inpu-form inputOne"><br>
             <label class="label-form-login label-form-login2">Senha</label><input type="password" name="password" class="input-form inputTwo">
             <input type="submit" value="Entrar" id="btn-form">
+            {% comment %} <label style="">senha</label> {% endcomment %}
         </form>
         <div id="container-reset-register">
             <span id="reset-password"><a href="#">Esqueci minha Senha?</a></span>
-            <span id="user-cad"><a href={% url 'register' %}>Casdastrar</a></span>
+        <span id="user-cad"><a href={% url 'register' %}>Casdastrar</a></span>
         </div>
     </div>
 {%endblock%}

@@ -1,5 +1,5 @@
 #container-login-form {
-    width:40%;
+    width:90%;
     height:400px;
     background-color: rgb(255, 255, 255);
     box-sizing: border-box;
@@ -8,6 +8,7 @@
     margin-top:110px;
 
     
+    /* border:1px  solid #000; */
     /* background: pink; */
 }
 
@@ -23,9 +24,13 @@
 }
 
 #container-login-form form {
-    width: 100%;
+    max-width: 450px;
     height: auto;
     margin: auto;
+    padding:10px;
+
+
+    /* border: 1px solid #000; */
 }
 
 #container-login-form form label {
@@ -50,7 +55,7 @@
 }
 
 #container-login-form form input {
-    width: 50%;
+    width:58%;
     height: 30px;
     border-radius: 5px;
     border: none;
@@ -69,23 +74,29 @@
 
 #container-login-form form #btn-form {
     background-color: rgb(143, 113, 137);
+    width:58%;
     color: white;
     display: block;
-    margin:10px 0 20px 149px;
+    margin:auto; 
+    margin-left:29%;
+    /* margin:10px 0 20px 149px; */
     height: 35px;
     border: none;
 }
 
 #container-reset-register {
     width:300px;
-    height: 300px; 
+    height: auto; 
     margin:auto;
-    padding: 5px;
+    padding: 10px;
+
+    /* border: 1px solid #000; */
 }
 
 #reset-password {
     display: block;
     color: white;
+    text-align: center;
     font-size: 15px;
     font-family: arial;
     margin-bottom:15px;
@@ -94,6 +105,7 @@
 #user-cad {
     display: block;
     color: white;
+    text-align: center;
     font-size: 15px;
     font-family: arial;
 }
@@ -104,7 +116,8 @@
 
 
 #site-header #btn-login:hover {
-    background-color: #916c91;
+    /* background-color: #916c91; */
+    color: #cece3c;
 }
 
 
@@ -248,6 +261,7 @@ REGISTER USER CSS CODE
 #contianer-information.product p{
     margin-bottom: 5px;
 }
+
 
 
 

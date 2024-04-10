@@ -8,7 +8,8 @@ from core.views import (
     product_detail,
     CreateOrder,
     OrderViews,
-    ContactView
+    ContactView,
+    HistoryOrderViews
 )
 
 
@@ -21,5 +22,6 @@ urlpatterns = [
     # path('promocoes', promotions, name='promotions'),
     path('contatos', ContactView.as_view(), name='contact'),
     path('pedido/fenalizado', CreateOrder.as_view(), name='finishingorder'),
-    path('pedidos/', OrderViews.as_view(), name='orders')
+    path('pedidos/', OrderViews.as_view(), name='orders'),
+    path('pedidos/historico-pedidos', HistoryOrderViews.as_view(), name='history-orders'),
 ]

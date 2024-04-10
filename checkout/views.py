@@ -1,5 +1,6 @@
 from typing import Any
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
+from django.urls import reverse
 from django.views.generic import RedirectView, TemplateView
 from django.forms import modelformset_factory
 
@@ -18,8 +19,34 @@ class CreateCartItemView(RedirectView):
         
         CartItem.objects.add_item(self.request.session.session_key, product)
         
-        return '/site/checkout/carrinho'
+        template = self.request.GET.get('uri')
+       
+
+        if template == None:
+            return '/site/checkout/carrinho'
+        else:
+            return f'/site/{template}'
+ 
+# class CreateCartItemView(TemplateView):
+     
+     
+#     def get_template_names(self, *args, **kwargs):
+        
+#         t = self.request.GET.get('t')
+        
+        
+        
+#         return [t]
     
+    def context_get_data(self, *args, **kwargs):
+       
+        if self.request.session.session_key is None:
+            self.request.session.save()
+                
+        product = get_object_or_404(Product, pk=kwargs['id'])
+        
+        CartItem.objects.add_item(self.request.session.session_key, product)
+        
 
 class RemoveCartItem(RedirectView):
     
