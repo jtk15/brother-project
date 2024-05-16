@@ -24,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-ovk4bo+=z%b5068@bbev05&z8l*+o16z9b3qmk^7p@ll!a^4fn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://e667-2804-14c-144-69e6-eeb6-c84b-6a20-64ad.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['http://www.joeltonportolima.com.br']
 
 
 # Application definition

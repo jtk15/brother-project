@@ -23,9 +23,9 @@ class CreateCartItemView(RedirectView):
        
 
         if template == None:
-            return '/site/checkout/carrinho'
+            return '/checkout/carrinho'
         else:
-            return f'/site/{template}'
+            return f'/{template}'
  
 # class CreateCartItemView(TemplateView):
      
@@ -56,7 +56,7 @@ class RemoveCartItem(RedirectView):
             
             cart_item = CartItem.objects.delete_item(self.request.session.session_key, product)
             
-            return '/site/checkout/carrinho'
+            return '/checkout/carrinho'
                         
 
 class CartItemView(TemplateView):
