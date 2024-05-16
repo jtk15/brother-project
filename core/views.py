@@ -27,7 +27,7 @@ class CreateOrder(LoginRequiredMixin, TemplateView):
             with transaction.atomic():
                 order = Order.objects.create_order(user=request.user, cart_items=cart_items, order_price=cart_price)
         else:
-            return redirect('/site/inicio')
+            return redirect('/inicio')
         
         return super(CreateOrder, self).get(request, *args, **kwargs)
     
